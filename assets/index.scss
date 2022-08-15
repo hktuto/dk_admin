@@ -1,0 +1,40 @@
+@forward 'element-plus/theme-chalk/src/common/var.scss' ;
+
+@use 'element-plus/theme-chalk/src/dark/css-vars.scss' as *;
+
+@use "element-plus/theme-chalk/src/index.scss" as *;
+
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family:Arial, Helvetica, sans-serif;
+}
+*{
+    box-sizing: border-box;    
+}
+
+:root{
+    --el-aside-width: auto;
+    --primary-color:#17B2C0;
+}
+
+.pageContent{
+    padding: 24px;
+}
+
+a{
+    text-decoration: none;
+    color: initial;
+}
+
+.pageHeader{
+    // color: var(--primary-color);
+    font-size: clamp(1.2rem, -0.875rem + 8.333vw, 2.5rem);
+    font-weight: 900;
+    // white-space: nowrap;
+    background: -webkit-linear-gradient(45deg, var(--primary-color), #8b19e2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 24px;
+}
+

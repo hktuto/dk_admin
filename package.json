@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "@nuxtjs/color-mode": "^3.1.4",
+    "nuxt": "3.0.0-rc.8",
+    "unplugin-element-plus": "^0.4.1"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.0.9",
+    "element-plus": "^2.2.13",
+    "sass": "^1.54.4"
+  }
+}

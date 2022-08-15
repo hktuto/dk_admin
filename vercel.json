@@ -1,5 +1,5 @@
 {
     "rewrites":[
-        { "source" :"/dkapi/", "destination": "http://164.92.87.177/dkapi/"}
+        { "source" :"/dkapi/:match*", "destination": "http://164.92.87.177/dkapi/:match*"}
     ]
 }

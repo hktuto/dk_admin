@@ -10,6 +10,9 @@
                 <nuxt-link to="/Achievements/add" class="fn">
                     Create Achievement
                 </nuxt-link>
+                <nuxt-link to="/Achievements/userAdd" class="fn">
+                    Add Achievement to user
+                </nuxt-link>
         </div>
     </div>
 </template>

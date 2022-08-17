@@ -1,15 +1,16 @@
 <template>
     <ElMenu :collapse="isCollapse" :default-active="defaultActive" >
-        <ElMenuItem index="/" :route="{path:'/'}" @click="$router.push('/')">
+        <ElMenuItem index="/"  @click="$router.push('/')">
             <ElIcon> <HomeFilled /> </ElIcon>
              <template #title>Home</template>
         </ElMenuItem>
-         <ElMenuItem index="/Achievements" :route="{path:'/Achievements'}" @click="$router.push('/Achievements')">
+         <ElMenuItem index="/Achievements"  @click="$router.push('/Achievements')">
             <ElIcon> <Star /> </ElIcon>
              <template #title>Achievement</template>
         </ElMenuItem>
+        
 
-        <ElMenuItem index="/Users" :route="{path:'/Users'}" @click="$router.push('/Users')">
+        <ElMenuItem index="/Users"  @click="$router.push('/Users')">
             <ElIcon> <User /> </ElIcon>
              <template #title>User</template>
         </ElMenuItem>

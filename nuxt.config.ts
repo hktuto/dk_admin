@@ -12,6 +12,11 @@ export default defineNuxtConfig({
         classPrefix:'',
         classSuffix:'',
     },
+    publicRuntimeConfig:{
+        public:{
+            API_ENDPOINT: process.env.API_ENDPOINT
+        }
+    },
     build: {
         transpile: lifecycle === "build" ? ["element-plus"] : [],
       },

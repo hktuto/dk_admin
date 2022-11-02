@@ -29,11 +29,11 @@
 <script lang="ts" setup>
 import { ElTable, ElTableColumn, ElNotification, ElButton } from 'element-plus'
 import { Delete } from '@element-plus/icons-vue'
-const { data, refresh } = await  useAsyncData('achievementList', () => apiFetch('/user_list', {method:'post'}))
+const { data, refresh } = await  useAsyncData('userList', () => apiFetch('/user_list', {method:'post'}))
 const router = useRouter()
 function rowClick(row, column, cell, event) {
     router.push({
-        path:'/Users/edit/' + row.achievement_id
+        path:'/Users/edit/' + row.user_id
     })
 }
 

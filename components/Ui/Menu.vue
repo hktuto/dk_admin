@@ -15,10 +15,10 @@
              <template #title>User</template>
         </ElMenuItem>
 
-        <!-- <ElMenuItem index="/User-Group"  @click="$router.push('/User-Group')">
+        <ElMenuItem index="/User-Group"  @click="$router.push('/User-Group')">
             <ElIcon> <User /> </ElIcon>
              <template #title>User Group</template>
-        </ElMenuItem> -->
+        </ElMenuItem>
     </ElMenu>
 </template>
 

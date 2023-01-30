@@ -1,21 +1,22 @@
 <template>
     <div class="pageContent">
-        <div class="pageHeader">Edit Achievements</div>
+        <div class="pageHeader">Edit User Group</div>
         <div class="form">
-            <ElForm >
+            {{$route.params.id}}
+            <ElForm v-if="data">
                 <ElFormItem label="Name">
                     <ElInput v-model="data.name" />
                 </ElFormItem > 
-                <ElFormItem label="Field">
-                    <ElSelect v-model="data.field" >
-                        <ElOption v-for="item in typeOption" :key="item" :value="item" :label="item" />
+                <ElFormItem label="user">
+                    <ElSelect v-model="data.user" multiple >
+                        <ElOption v-for="item in displayUserList" :key="item" :value="item.user_id" :label="item.username" />
                     </ElSelect>
+
                 </ElFormItem>
-                <ElFormItem label="Value">
-                    <ElInput v-model="data.value" />
+                <ElFormItem label="limit">
+                    <ElInput v-model="data.limit" />
                 </ElFormItem>
                 <ElFormItem>
-                    <ElButton @click="() => refresh()">Refresh</ElButton>
                     <ElButton type="primary" @click="submit">Submit</ElButton>
                 </ElFormItem>
             </ElForm>
@@ -27,20 +28,22 @@
 <script lang="ts" setup>
 import { ElForm , ElFormItem, ElInput, ElButton, ElNotification, ElSelect, ElOption } from 'element-plus';
 const route = useRoute();
-const { typeOption } = useAchievement()
-const { data, refresh } = await useAsyncData('achievementDetail', () => apiFetch('/achievement_read', {method:'post', body: {
-    id: route.params.id
-}}))
+
+const { data } = await useAsyncData('GroupDetail', () => apiFetch('/userGroup/getOne/' + route.params.id, {method:'post', body:{}}))
+const { data:userList, refresh } = await useAsyncData('userList', () => apiFetch('/user_list', {method:'post'}))
+
+const displayUserList = computed(() => userList.value.filter(i => i.user_id && i.username))
+
 
 async function submit() {
-    if(!data.value.name || !data.value.field || !data.value.value) {
+    if(!data.value.name || !data.value.limit) {
         ElNotification({
             title: 'Warning',
             message:'Please fill in all required field',
             type: 'error'
         })
     }
-    if(Number(data.value.value) === NaN) {
+    if(Number(data.value.limit) === NaN) {
         ElNotification({
             title: 'Warning',
             message:'Value must be number',
@@ -48,11 +51,12 @@ async function submit() {
         })
     }
 
-    await apiFetch('/achievement_update', { method:'post', body:{
-        id: data.value.achievement_id,
+    await apiFetch('/userGroup/update', { method:'post', body:{
+        user_group_id: data.value.user_group_id,
         name: data.value.name,
-        field: data.value.field,
-        value:Number(data.value.value)
+        parentId:data.value.parentId,
+        user: data.value.user,
+        limit:Number(data.value.limit)
     }})
     ElNotification({
             title: 'Success',
@@ -61,5 +65,4 @@ async function submit() {
         })
 }
 
-onMounted(() => refresh())
 </script>

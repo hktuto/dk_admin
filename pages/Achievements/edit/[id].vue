@@ -11,6 +11,11 @@
                         <ElOption v-for="item in typeOption" :key="item" :value="item" :label="item" />
                     </ElSelect>
                 </ElFormItem>
+                <ElFormItem label="Field">
+                    <ElSelect v-model="data.type" >
+                        <ElOption v-for="item in types" :key="item" :value="item" :label="item" />
+                    </ElSelect>
+                </ElFormItem>
                 <ElFormItem label="Value">
                     <ElInput v-model="data.value" />
                 </ElFormItem>
@@ -31,6 +36,8 @@ const { typeOption } = useAchievement()
 const { data, refresh } = await useAsyncData('achievementDetail', () => apiFetch('/achievement_read', {method:'post', body: {
     id: route.params.id
 }}))
+
+const types = ['Digital rewards', 'physical rewards']
 
 async function submit() {
     if(!data.value.name || !data.value.field || !data.value.value) {

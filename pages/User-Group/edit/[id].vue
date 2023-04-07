@@ -2,16 +2,22 @@
     <div class="pageContent">
         <div class="pageHeader">Edit User Group</div>
         <div class="form">
-            {{$route.params.id}}
             <ElForm v-if="data">
                 <ElFormItem label="Name">
                     <ElInput v-model="data.name" />
+                </ElFormItem > 
+                <ElFormItem label="Description">
+                    <ElInput v-model="data.desc" />
                 </ElFormItem > 
                 <ElFormItem label="user">
                     <ElSelect v-model="data.user" multiple >
                         <ElOption v-for="item in displayUserList" :key="item" :value="item.user_id" :label="item.username" />
                     </ElSelect>
-
+                </ElFormItem>
+                <ElFormItem label="Parent Group">
+                    <ElSelect v-model="data.parentId" >
+                        <ElOption v-for="item in userGroup" :key="item" :value="item.name" :label="item.name" />
+                    </ElSelect>
                 </ElFormItem>
                 <ElFormItem label="limit">
                     <ElInput v-model="data.limit" />
@@ -31,7 +37,7 @@ const route = useRoute();
 
 const { data } = await useAsyncData('GroupDetail', () => apiFetch('/userGroup/getOne/' + route.params.id, {method:'post', body:{}}))
 const { data:userList, refresh } = await useAsyncData('userList', () => apiFetch('/user_list', {method:'post'}))
-
+const { data:userGroup } = await  useAsyncData('userGroupList', () => apiFetch('/userGroup/all', {method:'get'}))
 const displayUserList = computed(() => userList.value.filter(i => i.user_id && i.username))
 
 

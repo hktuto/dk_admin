@@ -19,6 +19,10 @@
             <ElIcon> <User /> </ElIcon>
              <template #title>User Group</template>
         </ElMenuItem>
+        <ElMenuItem index="/notification"  @click="$router.push('/notification')">
+            <ElIcon> <User /> </ElIcon>
+             <template #title>New Notification</template>
+        </ElMenuItem>
     </ElMenu>
 </template>
 
